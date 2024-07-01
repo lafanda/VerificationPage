@@ -36,6 +36,7 @@
     const token = urlParams.get('token');
 
     if (token) {
+      console.log('Token:', token);
       fetch(`https://localhost:4000/auth/verify-email?token=${token}`, {
         method: 'GET'
       })
