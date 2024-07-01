@@ -29,5 +29,34 @@
   <script src="js/app.js"></script>
 
 </body>
+<script>
+  window.onload = function() {
+    // Parse the URL to get the token
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (token) {
+      fetch(`https://localhost:4000/auth/verify-email?token=${token}`, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Handle response here
+          if (data.success) {
+            document.getElementById('message').innerText = 'Email verified successfully!';
+          } else {
+            document.getElementById('message').innerText = 'Verification failed or token expired.';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('message').innerText = 'An error occurred during verification.';
+        });
+    } else {
+      document.getElementById('message').innerText = 'No verification token found.';
+    }
+  }
+</script>
+
 
 </html>
