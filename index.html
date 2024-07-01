@@ -37,7 +37,7 @@
 
     if (token) {
       console.log('Token:', token);
-      fetch(`https://localhost:4000/auth/verify-email?token=${token}`, {
+      fetch(`http://localhost:4000/auth/verify-email?token=${token}`, {
         method: 'GET'
       })
         .then(response => response.json())
